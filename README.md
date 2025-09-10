@@ -1,11 +1,3 @@
-Kunal, I can't directly create downloadable files—but here's what you can do:
-
-1. **Copy the content below** into a text editor like VS Code, Notepad++, or even GitHub's online editor.
-2. **Save it as** `README.md` in your project folder.
-
----
-
-```markdown
 # TDScope
 
 **Tagline:** _See beyond the surface—predict purity with precision._
@@ -55,34 +47,24 @@ TDScope/
 ├── setup.py <- makes project pip installable (pip install -e .) so src can be imported
 ├── src <- Source code for use in this project.
 │   ├── **init**.py <- Makes src a Python module
-│ │
+│   │
 │   ├── data <- Scripts to download or generate data
 │   │   └── make_dataset.py
-│ │
+│   │
 │   ├── features <- Scripts to turn raw data into features for modeling
 │   │   └── build_features.py
-│ │
+│   │
 │   ├── models <- Scripts to train models and then use trained models to make
-│ │ │ predictions
+│   │   │ predictions
 │   │   ├── predict_model.py
 │   │   └── train_model.py
-│ │
+│   │
 │   └── visualization <- Scripts to create exploratory and results oriented visualizations
 │   └── visualize.py
 │
 └── tox.ini <- tox file with settings for running tox; see tox.readthedocs.io
 
 ````
-
----
-
-## 🧠 How It Works
-
-1. **Data Ingestion**: Collect water quality data including temperature, pH, etc.
-2. **Feature Engineering**: Transform raw data into model-ready features.
-3. **Model Training**: Train regression models to predict TDS values.
-4. **Evaluation**: Assess model performance using metrics like RMSE and R².
-5. **Visualization**: Generate plots to interpret predictions and trends.
 
 ---
 
@@ -98,12 +80,10 @@ pip install -e .
 
 ## 📊 Usage
 
-Run the pipeline using Make:
+Run the pipeline using Repro:
 
 ```bash
-make data        # Process raw data
-make train       # Train the model
-make predict     # Generate predictions
+dvc repro
 ```
 
 Or use individual scripts from `src/` for custom workflows.
@@ -129,7 +109,7 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. Please take a look at the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -137,10 +117,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 **Kunal Mallick**  
 _Machine Learning Enthusiast | Water Quality Advocate_
-
-```
-
----
-
-If you want help writing a `LICENSE` file or setting up your GitHub repo structure, I’ve got you covered.
-```
