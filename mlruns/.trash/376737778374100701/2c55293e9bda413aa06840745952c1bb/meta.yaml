@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/376737778374100701/2c55293e9bda413aa06840745952c1bb/artifacts
+deleted_time: 1757674023835
+end_time: 1757673622682
+entry_point_name: ''
+experiment_id: '376737778374100701'
+lifecycle_stage: deleted
+run_id: 2c55293e9bda413aa06840745952c1bb
+run_name: inquisitive-wolf-215
+run_uuid: 2c55293e9bda413aa06840745952c1bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757673616148
+status: 3
+tags: []
+user_id: evilk

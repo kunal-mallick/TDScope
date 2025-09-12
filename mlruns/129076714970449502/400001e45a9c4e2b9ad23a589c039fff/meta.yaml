@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/129076714970449502/400001e45a9c4e2b9ad23a589c039fff/artifacts
+end_time: 1757679549164
+entry_point_name: ''
+experiment_id: '129076714970449502'
+lifecycle_stage: active
+run_id: 400001e45a9c4e2b9ad23a589c039fff
+run_name: unique-penguin-11
+run_uuid: 400001e45a9c4e2b9ad23a589c039fff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757679543312
+status: 3
+tags: []
+user_id: evilk

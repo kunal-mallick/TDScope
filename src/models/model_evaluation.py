@@ -1,5 +1,6 @@
 import os
 import json
+import mlflow
 import pickle
 import pandas as pd
 from sklearn.metrics import mean_squared_error, r2_score ,root_mean_squared_error
@@ -23,14 +24,22 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 rmse = root_mean_squared_error(y_test, y_pred)
 
-# save evaluation metrics in json format
-metrics = {"test_metrics":
-    {'mean_squared_error': mse,
-    'r2_score': r2,
-    'root_mean_squared_error': rmse}
-}
+# Set the tracking URI
+mlflow.set_tracking_uri("http://127.0.0.1:5000/")
 
-metrics_path = 'reports/evaluation_metrics.json'
-os.makedirs(os.path.dirname(metrics_path), exist_ok=True)
-with open(metrics_path, 'w') as f:
-    json.dump(metrics, f, indent=4)
+# log metrics to MLflow
+mlflow.set_experiment("TDS Prediction Experiment")
+with mlflow.start_run():
+    mlflow.log_metric("MSE", mse)
+    mlflow.log_metric("R2", r2)
+    mlflow.log_metric("RMSE", rmse)
+    mlflow.sklearn.log_model(model, "model")
+    mlflow.log_artifact(test_data_path, artifact_path="test_data")
+    mlflow.log_param("model_type", "SVR")
+    mlflow.log_param("features", list(X_test.columns))
+    mlflow.log_param("target", "Tds")
+    mlflow.log_param("test_data_size", len(test_data))
+    mlflow.log_param("model_path", model_path)
+    mlflow.log_param("test_data_path", test_data_path)
+    mlflow.log_param("evaluation_metrics", model.get_params())
+    mlflow.end_run()

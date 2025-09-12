@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/711772174801564978/f3e75649b6894012b03310e8741be8a4/artifacts
+deleted_time: 1757674470581
+end_time: 1757674105643
+entry_point_name: ''
+experiment_id: '711772174801564978'
+lifecycle_stage: deleted
+run_id: f3e75649b6894012b03310e8741be8a4
+run_name: bemused-steed-630
+run_uuid: f3e75649b6894012b03310e8741be8a4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757674098783
+status: 3
+tags: []
+user_id: evilk

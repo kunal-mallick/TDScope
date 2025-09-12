@@ -2,57 +2,48 @@ stages:
   data_ingestion:
     cmd: python src/data/data_ingestion.py
     deps:
-    - src/data/data_ingestion.py
+      - src/data/data_ingestion.py
     params:
-    - data_ingestion.test_size
-    - data_ingestion.random_state
+      - data_ingestion.test_size
+      - data_ingestion.random_state
     outs:
-    - data/raw/test.csv
-    - data/raw/train.csv
+      - data/raw/test.csv
+      - data/raw/train.csv
   data_preprocessing:
     cmd: python src/data/data_preprocessing.py
     deps:
-    - data/raw/test.csv
-    - data/raw/train.csv
-    - src/data/data_preprocessing.py
+      - data/raw/test.csv
+      - data/raw/train.csv
+      - src/data/data_preprocessing.py
     outs:
-    - data/processed/test_scaled.csv
-    - data/processed/train_scaled.csv
+      - data/processed/test_scaled.csv
+      - data/processed/train_scaled.csv
+      - models/scaler_model.pkl
   feature_engineering:
     cmd: python src/features/feature_engineering.py
     deps:
-    - data/processed/test_scaled.csv
-    - data/processed/train_scaled.csv
-    - src/features/feature_engineering.py
+      - data/processed/test_scaled.csv
+      - data/processed/train_scaled.csv
+      - src/features/feature_engineering.py
     params:
-    - feature_engineering.n_components
-    - feature_engineering.random_state
+      - feature_engineering.n_components
+      - feature_engineering.random_state
     outs:
-    - data/features/test_pca.csv
-    - data/features/train_pca.csv
+      - data/features/test_pca.csv
+      - data/features/train_pca.csv
+      - models/pca_model.pkl
   model_building:
     cmd: python src/models/model_building.py
     deps:
-    - data/features/train_pca.csv
-    - src/models/model_building.py
+      - data/features/train_pca.csv
+      - src/models/model_building.py
     params:
-    - model_building.C
-    - model_building.cache_size
-    - model_building.coef0
-    - model_building.coef0
-    - model_building.degree
-    - model_building.epsilon
-    - model_building.gamma
-    - model_building.kernel
-    - model_building.shrinking
-    - model_building.verbose
+      - model_building.param_grid
     outs:
-    - models/svr_model.pkl
+      - models/svr_model.pkl
   model_evaluation:
     cmd: python src/models/model_evaluation.py
     deps:
-    - data/features/test_pca.csv
-    - models/svr_model.pkl
-    - src/models/model_evaluation.py
-    outs:
-    - reports/evaluation_metrics.json
+      - data/features/test_pca.csv
+      - models/svr_model.pkl
+      - src/models/model_evaluation.py

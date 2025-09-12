@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/711772174801564978/469ef68375bc436bba04b321a609a908/artifacts
+deleted_time: 1757674470581
+end_time: 1757674048782
+entry_point_name: ''
+experiment_id: '711772174801564978'
+lifecycle_stage: deleted
+run_id: 469ef68375bc436bba04b321a609a908
+run_name: receptive-crow-462
+run_uuid: 469ef68375bc436bba04b321a609a908
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757674042614
+status: 4
+tags: []
+user_id: evilk

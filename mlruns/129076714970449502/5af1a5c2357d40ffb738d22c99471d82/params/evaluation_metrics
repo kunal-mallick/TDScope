@@ -1,0 +1,1 @@
+{'C': 100, 'cache_size': 100, 'coef0': 5, 'degree': 3, 'epsilon': 0.5, 'gamma': 'scale', 'kernel': 'rbf', 'max_iter': -1, 'shrinking': True, 'tol': 0.1, 'verbose': False}

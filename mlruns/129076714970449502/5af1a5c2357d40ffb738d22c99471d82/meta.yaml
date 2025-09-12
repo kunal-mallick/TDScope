@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/129076714970449502/5af1a5c2357d40ffb738d22c99471d82/artifacts
+end_time: 1757674743717
+entry_point_name: ''
+experiment_id: '129076714970449502'
+lifecycle_stage: active
+run_id: 5af1a5c2357d40ffb738d22c99471d82
+run_name: resilient-ant-416
+run_uuid: 5af1a5c2357d40ffb738d22c99471d82
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757674737923
+status: 3
+tags: []
+user_id: evilk

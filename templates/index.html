@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TDScope | Predict Purity with Precision</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">TDScope</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#predict">Predict</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>See beyond the surface—predict purity with precision.</h1>
+    <p>
+      TDScope uses machine learning to transform raw water sensor data into 
+      actionable insights for monitoring, sustainability, and public health.
+    </p>
+    <a href="#predict" class="cta-btn">Start Predicting</a>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2>Why Choose TDScope?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>💧 Smart Prediction</h3>
+        <p>AI-powered TDS predictions from water parameters like pH, Temperature, and more.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📊 Actionable Insights</h3>
+        <p>Convert raw data into clear, usable insights for decision-making.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌍 Sustainability</h3>
+        <p>Support industries and communities in monitoring water quality responsibly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prediction Form -->
+  <section id="predict" class="predict">
+    <div class="container">
+      <h2>Predict Total Dissolved Solids (TDS)</h2>
+      <form id="prediction-form">
+  <div class="form-grid">
+    {% for field in fields %}
+    <div class="form-group">
+      <label for="{{field}}">{{field}}</label>
+      <input type="number" step="any" id="{{field}}" name="{{field}}" value="{{ defaults[field] }}" required>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="form-buttons">
+    <button type="button" id="predict-btn">Predict</button>
+    <button type="button" id="clear-btn">Clear</button>
+  </div>
+</form>
+
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>About TDScope</h2>
+    <p>
+      TDScope empowers researchers, industries, and policymakers with accurate water quality predictions. 
+      By blending environmental data and machine learning, we ensure transparency and trust in every drop.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TDScope | Built with Flask, ML & ❤️</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

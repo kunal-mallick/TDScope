@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/711772174801564978/2a915a36b4fb48fab2812650a279ddad/artifacts
+deleted_time: 1757674470581
+end_time: 1757674291886
+entry_point_name: ''
+experiment_id: '711772174801564978'
+lifecycle_stage: deleted
+run_id: 2a915a36b4fb48fab2812650a279ddad
+run_name: powerful-bird-938
+run_uuid: 2a915a36b4fb48fab2812650a279ddad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757674285550
+status: 3
+tags: []
+user_id: evilk

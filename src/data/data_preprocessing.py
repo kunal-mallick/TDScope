@@ -1,4 +1,5 @@
 import os
+import pickle
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
@@ -22,6 +23,11 @@ test_data_y = test_data["Tds"]
 scaler = StandardScaler()
 train_data_X_scaled = scaler.fit_transform(train_data_X)
 test_data_X_scaled = scaler.transform(test_data_X)
+
+# save StandardScaler model
+os.makedirs("models", exist_ok=True)  # Ensure the directory exists
+with open("models/scaler_model.pkl", "wb") as f:
+    pickle.dump(scaler, f)
 
 # Convert scaled features back to DataFrame
 train_scaled = pd.DataFrame(train_data_X_scaled, columns=train_data_X.columns)
