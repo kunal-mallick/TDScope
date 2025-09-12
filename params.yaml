@@ -5,3 +5,17 @@ data_ingestion:
 feature_engineering:
   n_components: 0.95 # Retain 95% of variance
   random_state: 42
+
+model_building:
+  kernel: "rbf" # ((...) -> Any) | Literal['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'] = "rbf",
+  degree: 3 # Int = 3,
+  gamma: "scale" # float | Literal['scale', 'auto'] = "scale",
+  coef0: 0 # Float = 0,
+  tol: 0.001 # Float = 0.001,
+  C: 100 # Float = 1,
+  epsilon: 0.1 # Float = 0.1,
+  shrinking: True # bool = True,
+  cache_size: 200 # Float = 200,
+  verbose: False # bool = False,
+  max_iter: # Int = ...
+

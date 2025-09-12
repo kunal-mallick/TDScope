@@ -72,3 +72,30 @@ stages:
       hash: md5
       md5: 879b84612abc1b6cebcc561d3d01bf32
       size: 5565630
+  model_building:
+    cmd: python src/models/model_building.py
+    deps:
+    - path: data/features/train_pca.csv
+      hash: md5
+      md5: 879b84612abc1b6cebcc561d3d01bf32
+      size: 5565630
+    - path: src/models/model_building.py
+      hash: md5
+      md5: 932360a554918a7021c0ef4143d5df2d
+      size: 1212
+    params:
+      params.yaml:
+        model_building.C: 100
+        model_building.cache_size: 200
+        model_building.coef0: 0
+        model_building.degree: 3
+        model_building.epsilon: 0.1
+        model_building.gamma: scale
+        model_building.kernel: rbf
+        model_building.shrinking: true
+        model_building.verbose: false
+    outs:
+    - path: models/svr_model.pkl
+      hash: md5
+      md5: ac6efbd0a0e7ec80a673957e25b2b031
+      size: 2538365
