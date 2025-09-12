@@ -6,3 +6,12 @@ stages:
     outs:
       - data/raw/test.csv
       - data/raw/train.csv
+  data_preprocessing:
+    cmd: python src/data/data_preprocessing.py
+    deps:
+      - data/raw/test.csv
+      - data/raw/train.csv
+      - src/data/data_preprocessing.py
+    outs:
+      - data/processed/test_scaled.csv
+      - data/processed/train_scaled.csv

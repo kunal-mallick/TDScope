@@ -37,10 +37,6 @@ wide_df = long_df.pivot_table(
     aggfunc="first"   # or 'mean' if duplicates exist
 ).reset_index()
 
-# Save
-wide_df.dropna(inplace=True)
-wide_df.drop(columns=["GEMS.Station.Number", "Sample.Date", "Sample.Time"], inplace=True)
-
 # Split the data into training and testing sets (80% train, 20% test)
 train_data, test_data = train_test_split(wide_df, test_size=0.2, random_state=42)
 
