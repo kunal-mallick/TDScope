@@ -1,0 +1,7 @@
+data_ingestion:
+  test_size: 0.25
+  random_state: 42
+
+feature_engineering:
+  n_components: 0.95 # Retain 95% of variance
+  random_state: 42

@@ -3,6 +3,9 @@ stages:
     cmd: python src/data/data_ingestion.py
     deps:
       - src/data/data_ingestion.py
+    params:
+      - data_ingestion.test_size
+      - data_ingestion.random_state
     outs:
       - data/raw/test.csv
       - data/raw/train.csv
@@ -15,3 +18,15 @@ stages:
     outs:
       - data/processed/test_scaled.csv
       - data/processed/train_scaled.csv
+  feature_engineering:
+    cmd: python src/features/feature_engineering.py
+    deps:
+      - data/processed/test_scaled.csv
+      - data/processed/train_scaled.csv
+      - src/features/feature_engineering.py
+    params:
+      - feature_engineering.n_components
+      - feature_engineering.random_state
+    outs:
+      - data/features/test_pca.csv
+      - data/features/train_pca.csv

@@ -1,6 +1,14 @@
 import os
+import yaml
 import pandas as pd
 from sklearn.model_selection import train_test_split
+
+# Load variables from params.yaml
+with open("params.yaml", "r") as file:
+    params = yaml.safe_load(file)
+
+    test_size = params["data_ingestion"]["test_size"]
+    random_state = params["data_ingestion"]["random_state"]
 
 files = {
     "Bicarbonate": "D:\GitHub\Dataset\Water\Bicarbonate.csv",
@@ -38,7 +46,7 @@ wide_df = long_df.pivot_table(
 ).reset_index()
 
 # Split the data into training and testing sets (80% train, 20% test)
-train_data, test_data = train_test_split(wide_df, test_size=0.2, random_state=42)
+train_data, test_data = train_test_split(wide_df, test_size=test_size, random_state=random_state)
 
 # Save the split datasets to CSV files in the 'data/raw' directory
 os.makedirs("data/raw", exist_ok=True)  # Ensure the directory exists   

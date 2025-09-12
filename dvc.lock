@@ -5,28 +5,32 @@ stages:
     deps:
     - path: src/data/data_ingestion.py
       hash: md5
-      md5: 2b1dafe95f6711a95199759e51a0adbf
-      size: 1826
+      md5: 23e71b82ecb7f329ebbfc05687f8a90a
+      size: 2085
+    params:
+      params.yaml:
+        data_ingestion.random_state: 42
+        data_ingestion.test_size: 0.25
     outs:
     - path: data/raw/test.csv
       hash: md5
-      md5: aa5f2cb1382e181f10074bfe745bb45b
-      size: 7501427
+      md5: a1942984835af97d0859370a7dd59bd1
+      size: 9385792
     - path: data/raw/train.csv
       hash: md5
-      md5: ef3c7d1f12e049e84185a4240eb49954
-      size: 30042284
+      md5: 8cc63030d8a048c5ee0cccb95e6509df
+      size: 28157919
   data_preprocessing:
     cmd: python src/data/data_preprocessing.py
     deps:
     - path: data/raw/test.csv
       hash: md5
-      md5: aa5f2cb1382e181f10074bfe745bb45b
-      size: 7501427
+      md5: a1942984835af97d0859370a7dd59bd1
+      size: 9385792
     - path: data/raw/train.csv
       hash: md5
-      md5: ef3c7d1f12e049e84185a4240eb49954
-      size: 30042284
+      md5: 8cc63030d8a048c5ee0cccb95e6509df
+      size: 28157919
     - path: src/data/data_preprocessing.py
       hash: md5
       md5: 4c0a5386f5fd36fd32496fd53957e504
@@ -34,9 +38,37 @@ stages:
     outs:
     - path: data/processed/test_scaled.csv
       hash: md5
-      md5: ee32dfb37d2f14403136dec0c183c596
-      size: 1803595
+      md5: 6c4a2a00ca8f8f61c5190100fb755f81
+      size: 2271948
     - path: data/processed/train_scaled.csv
       hash: md5
-      md5: 654b9aae7fee2b958bc8c4f7c0bdfe55
-      size: 7419604
+      md5: af75042145b09666c19880d3b295912f
+      size: 6953250
+  feature_engineering:
+    cmd: python src/features/feature_engineering.py
+    deps:
+    - path: data/processed/test_scaled.csv
+      hash: md5
+      md5: 6c4a2a00ca8f8f61c5190100fb755f81
+      size: 2271948
+    - path: data/processed/train_scaled.csv
+      hash: md5
+      md5: af75042145b09666c19880d3b295912f
+      size: 6953250
+    - path: src/features/feature_engineering.py
+      hash: md5
+      md5: 421c0ae8cba0c8ce376af90ce8e60c3f
+      size: 1415
+    params:
+      params.yaml:
+        feature_engineering.n_components: 0.95
+        feature_engineering.random_state: 42
+    outs:
+    - path: data/features/test_pca.csv
+      hash: md5
+      md5: 795614b9095934c82724539cf5c22f7f
+      size: 1818087
+    - path: data/features/train_pca.csv
+      hash: md5
+      md5: 879b84612abc1b6cebcc561d3d01bf32
+      size: 5565630
