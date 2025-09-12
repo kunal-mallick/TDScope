@@ -48,3 +48,11 @@ stages:
     - model_building.verbose
     outs:
     - models/svr_model.pkl
+  model_evaluation:
+    cmd: python src/models/model_evaluation.py
+    deps:
+    - data/features/test_pca.csv
+    - models/svr_model.pkl
+    - src/models/model_evaluation.py
+    outs:
+    - reports/evaluation_metrics.json

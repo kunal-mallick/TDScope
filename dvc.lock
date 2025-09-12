@@ -85,17 +85,37 @@ stages:
       size: 1212
     params:
       params.yaml:
-        model_building.C: 100
+        model_building.C: 50
         model_building.cache_size: 200
         model_building.coef0: 0
-        model_building.degree: 3
-        model_building.epsilon: 0.1
-        model_building.gamma: scale
-        model_building.kernel: rbf
+        model_building.degree: 5
+        model_building.epsilon: 0.5
+        model_building.gamma: auto
+        model_building.kernel: linear
         model_building.shrinking: true
         model_building.verbose: false
     outs:
     - path: models/svr_model.pkl
       hash: md5
-      md5: ac6efbd0a0e7ec80a673957e25b2b031
-      size: 2538365
+      md5: 128073b8699d22bd74da4e76a5055f48
+      size: 2509468
+  model_evaluation:
+    cmd: python src/models/model_evaluation.py
+    deps:
+    - path: data/features/test_pca.csv
+      hash: md5
+      md5: 795614b9095934c82724539cf5c22f7f
+      size: 1818087
+    - path: models/svr_model.pkl
+      hash: md5
+      md5: 128073b8699d22bd74da4e76a5055f48
+      size: 2509468
+    - path: src/models/model_evaluation.py
+      hash: md5
+      md5: b82d78e7f14b432a17ee0794ed59fb31
+      size: 1000
+    outs:
+    - path: reports/evaluation_metrics.json
+      hash: md5
+      md5: ad9d8829688540f7f4f76b0ef78b0ca1
+      size: 180

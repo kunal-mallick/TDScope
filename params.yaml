@@ -7,13 +7,13 @@ feature_engineering:
   random_state: 42
 
 model_building:
-  kernel: "rbf" # ((...) -> Any) | Literal['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'] = "rbf",
-  degree: 3 # Int = 3,
-  gamma: "scale" # float | Literal['scale', 'auto'] = "scale",
+  kernel: "linear" # ((...) -> Any) | Literal['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'] = "rbf",
+  degree: 5 # Int = 3,
+  gamma: "auto" # float | Literal['scale', 'auto'] = "scale",
   coef0: 0 # Float = 0,
-  tol: 0.001 # Float = 0.001,
-  C: 100 # Float = 1,
-  epsilon: 0.1 # Float = 0.1,
+  tol: 0.010 # Float = 0.001,
+  C: 50 # Float = 1,
+  epsilon: 0.5 # Float = 0.1,
   shrinking: True # bool = True,
   cache_size: 200 # Float = 200,
   verbose: False # bool = False,
