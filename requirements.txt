@@ -1,5 +1,5 @@
 # Local package
--e .
+
 
 # External requirements
 numpy==1.26.4
