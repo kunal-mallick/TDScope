@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 # Load models (ensure these are in the working directory)
-MODEL_FILE = r"models\svr_model.pkl"
-SCALER_FILE = r"models\scaler_model.pkl"
-PCA_FILE = r"models\pca_model.pkl"
+MODEL_FILE = os.path.join("models", "svr_model.pkl")
+SCALER_FILE = os.path.join("models", "scaler_model.pkl")
+PCA_FILE = os.path.join("models", "pca_model.pkl")
 
 model = joblib.load(MODEL_FILE)
 scaler = joblib.load(SCALER_FILE)
@@ -57,4 +57,5 @@ def predict():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
