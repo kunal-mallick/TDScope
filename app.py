@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 # Load models (ensure these are in the working directory)
-MODEL_FILE = "models\svr_model.pkl"
-SCALER_FILE = "models\scaler_model.pkl"
-PCA_FILE = "models\pca_model.pkl"
+MODEL_FILE = "models\\svr_model.pkl"
+SCALER_FILE = "models\\scaler_model.pkl"
+PCA_FILE = "models\\pca_model.pkl"
 
 model = joblib.load(MODEL_FILE)
 scaler = joblib.load(SCALER_FILE)
@@ -40,22 +40,16 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = request.json
-        # Collect values in the correct order
+        data = request.json  # must be JSON
         values = [float(data[field]) for field in FIELDS]
         values = np.array(values).reshape(1, -1)
-        
-        # Apply scaler and PCA
         scaled = scaler.transform(values)
         reduced = pca.transform(scaled)
-        
-        # Predict
         prediction = model.predict(reduced)[0]
         return jsonify({'tds': round(float(prediction), 2)})
-    
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
+
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5000, debug=True)

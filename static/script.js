@@ -1,43 +1,49 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("prediction-form");
   const predictBtn = document.getElementById("predict-btn");
   const clearBtn = document.getElementById("clear-btn");
-  const resultBox = document.getElementById("result");
+  const resultDiv = document.getElementById("result");
 
-  // Predict button handler
-  predictBtn.addEventListener("click", async function () {
-    // Collect values as floats
+  // Predict button click
+  predictBtn.addEventListener("click", async () => {
     const formData = {};
-    form.querySelectorAll("input").forEach((input) => {
-      const val = parseFloat(input.value);
-      formData[input.name] = isNaN(val) ? 0.0 : val;
+    const inputs = form.querySelectorAll("input");
+    inputs.forEach(input => {
+      formData[input.name] = parseFloat(input.value); // convert to float
     });
 
     try {
       const response = await fetch("/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       const data = await response.json();
 
-      if (data.error) {
-        resultBox.textContent = "Error: " + data.error;
-        resultBox.style.color = "red";
-      } else {
-        resultBox.textContent = `Predicted TDS: ${data.TDS_prediction}`;
-        resultBox.style.color = "green";
+      if (data.tds !== undefined) {
+        // Example: color-code based on TDS thresholds
+        let color = "green";
+        if (data.tds > 1000) color = "red";
+        else if (data.tds > 500) color = "orange";
+
+        resultDiv.innerHTML = `Predicted TDS: <span style="color:${color}">${data.tds}</span>`;
+      } else if (data.error) {
+        resultDiv.innerHTML = `<span style="color:red">${data.error}</span>`;
       }
-    } catch (error) {
-      resultBox.textContent = "Error connecting to server.";
-      resultBox.style.color = "red";
+
+    } catch (err) {
+      console.error(err);
+      resultDiv.innerHTML = `<span style="color:red">Error predicting TDS</span>`;
     }
   });
 
-  // Clear button handler
-  clearBtn.addEventListener("click", function () {
-    form.querySelectorAll("input").forEach((input) => (input.value = ""));
-    resultBox.textContent = "";
+  // Clear button resets to default values
+  clearBtn.addEventListener("click", () => {
+    const inputs = form.querySelectorAll("input");
+    inputs.forEach(input => {
+      input.value = input.defaultValue; // reset to default
+    });
+    resultDiv.innerHTML = "";
   });
 });
