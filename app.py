@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 
 # Load models (ensure these are in the working directory)
-MODEL_FILE = "models\\svr_model.pkl"
-SCALER_FILE = "models\\scaler_model.pkl"
-PCA_FILE = "models\\pca_model.pkl"
+MODEL_FILE = os.path.join("models", "svr_model.pkl")
+SCALER_FILE = os.path.join("models", "scaler_model.pkl")
+PCA_FILE = os.path.join("models", "pca_model.pkl")
 
 model = joblib.load(MODEL_FILE)
 scaler = joblib.load(SCALER_FILE)
